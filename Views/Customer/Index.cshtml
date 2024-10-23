@@ -1,0 +1,42 @@
+﻿
+
+@model List<PhoneBook.Models.Customer>
+
+<h1>Customer List</h1>
+
+<a class="btn btn-success mb-3" asp-controller="Customer" asp-action="Create">Create New Customer</a>
+
+@if (Model is null)
+{
+    <p>No customer was found</p>
+}
+else
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Notes</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@customer.Name</td>
+                    <td>@customer.Surname</td>
+                    <td>@customer.Notes</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Customer" asp-action="Edit" asp-route-id="@customer.Id">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Customer" asp-action="Delete" asp-route-id="@customer.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
